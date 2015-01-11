@@ -1,0 +1,18 @@
+
+<h1>Listing Groups</h1>
+
+<p>
+  <strong>Group Name:</strong>
+  <%= group.name %>
+</p>
+<p>
+  <strong>Group Cescription:</strong>
+  <%= group.description %>
+</p>
+<p>
+  <strong>Group Category:</strong>
+  <%= group.category.name %>
+</p>
+<%= link_to 'Show', [group.category, group] %>
+<%= link_to 'Edit', edit_category_group_path(group.category, group) %>
+<%= link_to 'Destroy', [group.category, group], method: :delete, data: { confirm: 'Are you sure?' } %>

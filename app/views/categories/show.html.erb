@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_category_path(@category) %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @category.description %>
+</p>
+
+<h2>Products</h2>
+<%= render @category.groups %>
+
+<p>
+<%= link_to 'Groups', category_groups_path(@category) %>
+<%= link_to 'Back', categories_path %>
+</p>
