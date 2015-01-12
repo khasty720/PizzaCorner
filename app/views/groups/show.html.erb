@@ -15,6 +15,11 @@
   <%= @group.category.name %>
 </p>
 
+
+<h2>Products</h2>
+<%= render @group.products %>
+
 <%= link_to 'Edit', edit_category_group_path(@group.category, @group) %>
 <%#= link_to 'Back', category_groups_path(@group.category) #Link to groups index# %>
 <%= link_to 'Back', @category %>
+<%= link_to 'Add Product', new_product_path %>

@@ -46,6 +46,10 @@ class GroupsController < ApplicationController
     @category = Category.find(params[:category_id])
     @group = @category.groups.create(params[:group])
 
+    #Attach Products to groups
+    #@products = Product.where(:id => params[:group_products])
+    #@group.products << @products
+
     respond_to do |format|
       if @group.save
         format.html { redirect_to category_group_url(@category,@group), notice: 'Group was successfully created.' }

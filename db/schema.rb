@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111205131) do
+ActiveRecord::Schema.define(version: 20150112182656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,24 +33,15 @@ ActiveRecord::Schema.define(version: 20150111205131) do
 
   add_index "groups", ["category_id"], name: "index_groups_on_category_id", using: :btree
 
-  create_table "product_groups", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "product_groups", ["group_id"], name: "index_product_groups_on_group_id", using: :btree
-  add_index "product_groups", ["product_id"], name: "index_product_groups_on_product_id", using: :btree
-
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "group_id"
   end
 
+  add_index "products", ["group_id"], name: "index_products_on_group_id", using: :btree
+
   add_foreign_key "groups", "categories"
-  add_foreign_key "product_groups", "groups"
-  add_foreign_key "product_groups", "products"
 end

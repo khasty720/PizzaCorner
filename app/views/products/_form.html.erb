@@ -21,8 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :group_id %>
-    <%= collection_select(:product, :group_ids,
-    Group.order('name ASC').all, :id, :name) %>
+    <%= f.collection_select :group_id, Group.all, :id, :name %>
   </div>
 
   <div class="actions">

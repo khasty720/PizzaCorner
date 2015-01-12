@@ -3,6 +3,6 @@ class Group < ActiveRecord::Base
   validates :description, :presence => true
 
   belongs_to :category
-  has_many :product_groups, :dependent => :destroy
-  has_many :products, :through => :product_groups
+  has_many :products, :dependent => :delete_all
+
 end
