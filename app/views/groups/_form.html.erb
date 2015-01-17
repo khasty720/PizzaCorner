@@ -21,15 +21,12 @@
   </div>
   <div class="field">
     <%= f.label :category_id %>
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
+    <%= f.collection_select :category_id, Category.order('name ASC').all, :id, :name %>
   </div>
-  <!--
   <div class="field">
-  <%= f.label :products %>
-  <%= select_tag "group_products",
-  options_from_collection_for_select(Product.all, 'id', 'name',
-  @group.products.map{ |j| j.id }), :multiple => true %>
-</div>-->
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

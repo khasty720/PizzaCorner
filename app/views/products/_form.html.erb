@@ -21,9 +21,12 @@
   </div>
   <div class="field">
     <%= f.label :group_id %>
-    <%= f.collection_select :group_id, Group.all, :id, :name %>
+    <%= f.collection_select :group_id, Group.order('name ASC').all, :id, :name %>
   </div>
-
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

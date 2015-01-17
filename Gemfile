@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 
+#------ Debug Gems------------
 group :development do
   gem "better_errors"
 end
-
 gem "binding_of_caller"
+#-----------------------------
+
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'

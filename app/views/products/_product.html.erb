@@ -2,8 +2,12 @@
   <strong>Name:</strong>
   <%= product.name %>
 </p>
-
 <p>
   <strong>Description:</strong>
   <%= product.description %>
+</p>
+<p>
+  <% if product.image_file_name.present? %>
+  <%= image_tag product.image.url, :size => :med  %>
+  <% end %>
 </p>

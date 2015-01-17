@@ -14,7 +14,11 @@
   <strong>Category:</strong>
   <%= @group.category.name %>
 </p>
-
+<p>
+  <% if @group.image_file_name.present? %>
+  <%= image_tag @group.image.url, :size => :med %>
+  <% end %>
+</p>
 
 <h2>Products</h2>
 <%= render @group.products %>
