@@ -1,10 +1,21 @@
 source 'https://rubygems.org'
 
-#------ Debug Gems------------
+#------ Dev Gems ------------
 group :development do
   gem "better_errors"
+  gem 'quiet_assets'
+  gem 'rails_layout'
 end
 gem "binding_of_caller"
+#-----------------------------
+
+#------- Devise --------------
+gem 'devise'
+#-----------------------------
+
+#------- Bootstrap -----------
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'autoprefixer-rails'
 #-----------------------------
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
