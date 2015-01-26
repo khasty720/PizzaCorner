@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
 
@@ -16,6 +16,10 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
+    #--Authorize--
+    unless @admin == current_user
+      redirect_to root_path, :alert => "Access denied."
+    end
     @product = Product.new
   end
 
@@ -25,7 +29,6 @@ class ProductsController < ApplicationController
     unless @admin == current_user
       redirect_to root_path, :alert => "Access denied."
     end
-    #-------------
   end
 
   # POST /products

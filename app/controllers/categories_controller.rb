@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
@@ -15,11 +15,17 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
+    unless @admin == current_user
+      redirect_to root_path, :alert => "Access denied."
+    end
     @category = Category.new
   end
 
   # GET /categories/1/edit
   def edit
+    unless @admin == current_user
+      redirect_to root_path, :alert => "Access denied."
+    end
   end
 
   # POST /categories
@@ -55,10 +61,14 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
+    if @admin == current_user
+      @category.destroy
+      respond_to do |format|
+        format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path, :alert => "Access denied."
     end
   end
 

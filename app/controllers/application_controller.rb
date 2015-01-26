@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     @admin = User.first
     #-------------------------
     end
-
+    
     private
     def user_not_authorized
       flash[:alert] = "Access denied." # TODO: make sure this isn't hard coded English.

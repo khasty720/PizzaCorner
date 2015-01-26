@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   # GET /groups
@@ -26,18 +26,26 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
+    unless @admin == current_user
+      redirect_to root_path, :alert => "Access denied."
+    end
     @category = Category.find(params[:category_id])
     @group = @category.groups.build
   end
 
   # GET /groups/1/edit
   def edit
-    @category = Category.find(params[:category_id])
+   if @admin == current_user
 
-    if Group.exists?(:category_id => @category.id, :id => params[:id])
-      @group = @category.groups.find(params[:id])
+     @category = Category.find(params[:category_id])
+     if Group.exists?(:category_id => @category.id, :id => params[:id])
+       @group = @category.groups.find(params[:id])
+     else
+       redirect_to categories_path
+     end
+
     else
-        redirect_to categories_path
+      redirect_to root_path, :alert => "Access denied."
     end
   end
 
@@ -83,13 +91,17 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
-    @category = Category.find(params[:category_id])
-    @group = @category.groups.find(params[:id])
+    if @admin == current_user
+      @category = Category.find(params[:category_id])
+      @group = @category.groups.find(params[:id])
 
-    @group.destroy
-    respond_to do |format|
-      format.html { redirect_to (category_groups_url), notice: 'Group was successfully destroyed.' }
-      format.json { head :no_content }
+      @group.destroy
+      respond_to do |format|
+        format.html { redirect_to (category_groups_url), notice: 'Group was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path, :alert => "Access denied."
     end
   end
 
