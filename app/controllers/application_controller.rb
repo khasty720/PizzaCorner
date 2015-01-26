@@ -10,16 +10,11 @@ class ApplicationController < ActionController::Base
     resource = controller_name.singularize.to_sym
     method = "#{resource}_params"
     params[resource] &&= send(method) if respond_to?(method, true)
-  end
 
-  if Rails.env.development?
-    # https://github.com/RailsApps/rails-devise-pundit/issues/10
-    #include Pundit
-    # https://github.com/elabs/pundit#ensuring-policies-are-used
-    #after_action :verify_authorized,  except: :index
-    #after_action :verify_policy_scoped, only: :index
-
-    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    #---- Get Admin User -----
+    @admin = User.first
+    #-------------------------
+    end
 
     private
     def user_not_authorized
@@ -28,8 +23,8 @@ class ApplicationController < ActionController::Base
     end
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) #<< :role
+      devise_parameter_sanitizer.for(:sign_up) << :company
+      devise_parameter_sanitizer.for(:account_update) << :company
     end
-  end
 
 end

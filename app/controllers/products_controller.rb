@@ -21,8 +21,11 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    @user = current_user
-    authorize @user
+    #--Authorize--
+    unless @admin == current_user
+      redirect_to root_path, :alert => "Access denied."
+    end
+    #-------------
   end
 
   # POST /products
@@ -59,11 +62,17 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
+
+    #--Authorize--
+    if @admin == current_user
     @product.destroy
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
+  else
+    redirect_to root_path, :alert => "Access denied."
+  end
   end
 
   private
