@@ -9,8 +9,9 @@ end
 gem "binding_of_caller"
 #-----------------------------
 
-#------- Devise --------------
+#------- Authentication ------
 gem 'devise'
+gem 'pundit'
 #-----------------------------
 
 #------- Bootstrap -----------
