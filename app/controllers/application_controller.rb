@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     @admin = User.first
     #-------------------------
     end
-    
+
     private
     def user_not_authorized
       flash[:alert] = "Access denied." # TODO: make sure this isn't hard coded English.
@@ -23,8 +23,8 @@ class ApplicationController < ActionController::Base
     end
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) << :company
-      devise_parameter_sanitizer.for(:account_update) << :company
+      devise_parameter_sanitizer.for(:sign_up) << :company << :street << :city <<:state << :zip << :country
+      devise_parameter_sanitizer.for(:account_update) << :company << :street << :city <<:state << :zip << :country
     end
 
 end

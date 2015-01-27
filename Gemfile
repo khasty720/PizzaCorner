@@ -19,6 +19,8 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'autoprefixer-rails'
 #-----------------------------
 
+gem 'rails_12factor', group: :production
+
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -61,4 +63,6 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  ruby "2.1.3"
 end

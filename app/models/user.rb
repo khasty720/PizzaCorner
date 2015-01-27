@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  validates :street, :city, :state, :zip, :country, :company, :presence => true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
