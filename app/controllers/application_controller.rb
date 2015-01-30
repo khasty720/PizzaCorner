@@ -14,7 +14,14 @@ class ApplicationController < ActionController::Base
     #---- Get Admin User -----
     @admin = User.first
     #-------------------------
+
+    #Links for Nav Bar
+    @category_links = Category.all
+    #-------------------------
     end
+
+
+
 
     private
     def user_not_authorized
