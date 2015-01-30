@@ -54,7 +54,7 @@
         <%= f.password_field :current_password, class: 'form-control' %>
       </div>
     </fieldset>
-    <%= f.submit 'Update', :class => 'button right' %>
+    <%= f.submit 'Update', :class => 'button right',  'data-disable-with' => "Please wait.."  %>
   <% end %>
 </div>
 <div class="authform">
