@@ -5,23 +5,13 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @category = Category.find(params[:category_id])
-    @groups = @category.groups
+    @groups = Group.all
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @category = Category.find(params[:category_id])
 
-    if Group.exists?(:category_id => @category.id, :id => params[:id])
-      @group = @category.groups.find(params[:id])
-    else
-      respond_to do |format|
-        format.html { redirect_to :back, notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
-        end
-    end
   end
 
   # GET /groups/new
@@ -29,22 +19,15 @@ class GroupsController < ApplicationController
     unless @admin == current_user
       redirect_to root_path, :alert => "Access denied."
     end
-    @category = Category.find(params[:category_id])
-    @group = @category.groups.build
+
+    @group = Group.new
   end
 
   # GET /groups/1/edit
   def edit
-   if @admin == current_user
 
-     @category = Category.find(params[:category_id])
-     if Group.exists?(:category_id => @category.id, :id => params[:id])
-       @group = @category.groups.find(params[:id])
-     else
-       redirect_to categories_path
-     end
-
-    else
+    #--Authorize--
+    unless @admin == current_user
       redirect_to root_path, :alert => "Access denied."
     end
   end
@@ -52,17 +35,15 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @category = Category.find(params[:category_id])
-    @group = @category.groups.create(params[:group])
 
-    #Attach Products to groups
-    #@products = Product.where(:id => params[:group_products])
-    #@group.products << @products
+    @group = Group.new(group_params)
+
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to category_group_url(@category,@group), notice: 'Group was successfully created.' }
+        format.html { redirect_to @group, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @group }
+
       else
         format.html { render :new }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -73,13 +54,11 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
-    category = Category.find(params[:category_id])
-    @group = category.groups.find(params[:id])
 
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to [@group.category, @group], notice: 'Group was successfully updated.' }
-        #format.html { redirect_to :back, notice: 'Group was successfully updated.' }
+
+        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit }
@@ -92,12 +71,11 @@ class GroupsController < ApplicationController
   # DELETE /groups/1.json
   def destroy
     if @admin == current_user
-      @category = Category.find(params[:category_id])
-      @group = @category.groups.find(params[:id])
+
 
       @group.destroy
       respond_to do |format|
-        format.html { redirect_to (category_groups_url), notice: 'Group was successfully destroyed.' }
+        format.html { redirect_to (groups_url), notice: 'Group was successfully destroyed.' }
         format.json { head :no_content }
       end
     else

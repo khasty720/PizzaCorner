@@ -6,6 +6,6 @@
   <%= image_tag group.image.url, :size => :med %>
   <% end %>
 </td>
-<td><%= link_to 'Show', [group.category, group], :class => "btn btn-default"  %></td>
-<td><%= link_to 'Edit', edit_category_group_path(group.category, group), :class => "btn btn-default"  %></td>
-<td><%= link_to 'Destroy', [group.category, group], method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-default"  %></td>
+<td><%= link_to 'Show', group, :class => "btn btn-default"  %></td>
+<td><%= link_to 'Edit', edit_group_path(group), :class => "btn btn-default"  %></td>
+<td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-default"  %></td>

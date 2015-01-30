@@ -1,5 +1,5 @@
 
-<h1><%= @category.name %> Groups</h1>
+<h1>Groups </h1>
 
 <table class="table table-striped">
   <thead>
@@ -17,14 +17,14 @@
         <td><%= group.name %></td>
         <td><%= group.description %></td>
         <td><%= group.category.name %></td>
-        <td><%= link_to 'Show', [group.category, group], :class => "btn btn-default" %></td>
-        <td><%= link_to 'Edit', edit_category_group_path(group.category, group), :class => "btn btn-default" %></td>
-        <td><%= link_to 'Destroy', [group.category, group], method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default" %></td>
+        <td><%= link_to 'Show', group, :class => "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_group_path(group), :class => "btn btn-default" %></td>
+        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'Back', @category,:class => "btn btn-default" %>
-<%= link_to 'New Group', new_category_group_path,:class => "btn btn-default" %>
+<%#= link_to 'Back', @category,:class => "btn btn-default" %>
+<%= link_to 'New Group', new_group_path,:class => "btn btn-default" %>
