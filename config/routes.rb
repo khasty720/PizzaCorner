@@ -2,15 +2,12 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'welcome/index'
-
   get 'admin/index'
 
   devise_for :users
   resources :users
   resources :products
-
-
-
+  resources :product_prices
   resources :categories
   resources :groups
 

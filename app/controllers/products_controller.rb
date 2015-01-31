@@ -12,6 +12,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    user = current_user
+    @product_price = ProductPrice.where(product_id: @product.id,  user_id: user.id)
   end
 
   # GET /products/new
@@ -69,7 +71,7 @@ class ProductsController < ApplicationController
     #--Authorize--
     if @admin == current_user
     @product.destroy
-    
+
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
@@ -87,6 +89,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :group_id, :image)
+      params.require(:product).permit(:name, :description, :group_id, :image, :default_price)
     end
 end

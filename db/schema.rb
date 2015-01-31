@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127035725) do
+ActiveRecord::Schema.define(version: 20150131005500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,16 +37,29 @@ ActiveRecord::Schema.define(version: 20150127035725) do
 
   add_index "groups", ["category_id"], name: "index_groups_on_category_id", using: :btree
 
+  create_table "product_prices", force: :cascade do |t|
+    t.decimal  "price",      precision: 8, scale: 2
+    t.boolean  "active"
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "product_prices", ["product_id"], name: "index_product_prices_on_product_id", using: :btree
+  add_index "product_prices", ["user_id"], name: "index_product_prices_on_user_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "group_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.decimal  "default_price",      precision: 8, scale: 2
   end
 
   add_index "products", ["group_id"], name: "index_products_on_group_id", using: :btree
@@ -76,4 +89,6 @@ ActiveRecord::Schema.define(version: 20150127035725) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "groups", "categories"
+  add_foreign_key "product_prices", "products"
+  add_foreign_key "product_prices", "users"
 end
