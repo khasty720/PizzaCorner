@@ -19,6 +19,10 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'autoprefixer-rails'
 #-----------------------------
 
+#------- Puma Server ---------
+gem 'puma'
+#-----------------------------
+
 gem 'rails_12factor', group: :production
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
