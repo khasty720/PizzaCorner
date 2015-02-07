@@ -11,3 +11,11 @@
   <%= image_tag product.image.url, :size => :med  %>
   <% end %>
 </p>
+<p>
+  <strong>Price:</strong>
+  <% if user_signed_in? %>
+  <%= number_to_currency(product.get_price(product,current_user))%>
+  <% else %>
+  Please **Contact Us** for Price
+  <% end %>
+</p>
