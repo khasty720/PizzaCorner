@@ -17,7 +17,6 @@
     <% @product_prices.each do |product_price| %>
       <tr>
         <td><%= number_to_currency(product_price.price) %></td>
-        <td><%= product_price.active %></td>
         <td><%= product_price.user.company %></td>
         <td><%= product_price.product.name %></td>
         <td><%= link_to 'Show', product_price %></td>
