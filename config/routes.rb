@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'order_items/create'
+
+  get 'order_items/update'
+
+  get 'order_items/destroy'
+
+  get 'carts/show'
+
   root 'welcome#index'
   get 'welcome/index'
   get 'admin/index'
@@ -10,6 +18,9 @@ Rails.application.routes.draw do
   resources :product_prices
   resources :categories
   resources :groups
+
+  resource :cart, only: [:show]
+  resources :order_items, only: [:create, :update, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -19,11 +19,16 @@
   <% end %>
 </p>
 
-<h2>Products</h2>
-<%= render @group.products %>
+<h3 class="text-center">Products for Sale</h3>
+<%#= render @group.products %>
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <% @group.products.each do |product| %>
+        <%= render "products/product", :product => product, :order_item =>@order_item %>
+        <% end %>
+    </div>
+  </div>
 
 <%= link_to 'Edit', edit_group_path(@group) %>
-<%#= link_to 'Back', category_groups_path(@group.category) #Link to groups index# %>
-<%#= link_to 'Back', @category %>
 <%= link_to 'Back', groups_path %>
 <%= link_to 'Add Product', new_product_path %>

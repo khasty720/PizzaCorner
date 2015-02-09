@@ -12,6 +12,7 @@ class Product < ActiveRecord::Base
   belongs_to :group
   has_many :product_prices
   has_many :users , through: :product_prices
+  has_many :order_items
 
   def get_price(product, user)
     if ProductPrice.exists?(product_id: product.id,  user_id: user.id)

@@ -11,7 +11,8 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-
+    #Order Item for product
+    @order_item = current_order.order_items.new
   end
 
   # GET /groups/new
