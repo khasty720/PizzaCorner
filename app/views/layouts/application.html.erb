@@ -9,12 +9,18 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <%= image_tag "logo.png", :width => "45%" %>
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
+    <!--main role="main">
+    </main-->
+      <%= render 'layouts/messages' %>
+
+
+    <div class="container">
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>

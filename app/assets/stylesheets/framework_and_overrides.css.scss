@@ -2,19 +2,87 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+// ----- Typography ------
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+//------------------------
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
   margin: 0 auto;
   }
+//------------------------
+
 // override for the 'Home' navigation link
 .navbar-brand {
   font-size: inherit;
   }
 
+nav {
+    padding-top: 10px;
+    //max-width: 900px
+    margin-left:auto;
+    margin-right:auto;
+    max-width :85%;
+    float:none !important;
+
+  }
+//-------------------------
+
+//--- universal ---
+//Added 3/15 Chapter 5 Rails Tutorial
+
+body {
+  padding-top: 30px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+//---------------------
+
+
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create your own classes
 // to make views framework-neutral
+/* Changed 3/15 Via Chapter 5 Rails Tutorial
 .column {
   @extend .col-md-6;
   @extend .text-center;
@@ -31,8 +99,12 @@ img {
   @extend .btn-primary;
   @extend .btn-lg;
   }
+*/
+
 // apply styles to HTML elements
 // to make views framework-neutral
+
+//---- Currently Not used --------
 main {
   @extend .container;
   background-color: #eee;
@@ -40,10 +112,13 @@ main {
   width: 100%;
   margin-top: 51px; // accommodate the navbar
   }
+
 section {
   @extend .row;
   margin-top: 20px;
   }
+//--------------------------------
+
 
   // Styles for form views
   // using Bootstrap
@@ -80,3 +155,34 @@ section {
     @extend .btn-primary;
     @extend .btn-xs;
   }
+
+//--------- Footer ------------
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+//------------------------------
