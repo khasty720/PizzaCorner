@@ -17,19 +17,21 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 1.5em;
   letter-spacing: -1px;
   margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
+  text-align: left;
+  font-weight: bold;
   color: #777;
 }
 
 p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+  //font-size: 1px;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  text-align: left;
 }
-//------------------------
+//----------------------
 
 // make all images responsive by default
 img {
@@ -38,13 +40,15 @@ img {
   }
 //------------------------
 
+
+
 // override for the 'Home' navigation link
 .navbar-brand {
   font-size: inherit;
   }
 
 nav {
-    padding-top: 10px;
+    padding-top: .05%;
     //max-width: 900px
     margin-left:auto;
     margin-right:auto;
@@ -57,8 +61,18 @@ nav {
 //--- universal ---
 //Added 3/15 Chapter 5 Rails Tutorial
 
+
 body {
   padding-top: 30px;
+  //background: #eee !important;
+  background: #E6E6E6 !important;
+
+  //------- Jumbotron ------
+  .jumbotron {
+    background: white;
+
+  }
+  //------------------------
 }
 
 section {
@@ -107,7 +121,7 @@ textarea {
 //---- Currently Not used --------
 main {
   @extend .container;
-  background-color: #eee;
+  //background-color: #eee;
   padding-bottom: 80px;
   width: 100%;
   margin-top: 51px; // accommodate the navbar
