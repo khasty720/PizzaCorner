@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+#------ Mail List -----------
+gem 'gibbon'
+gem 'sucker_punch'
+#----------------------------
+
 #------ Dev Gems ------------
 group :development do
   gem "better_errors"
