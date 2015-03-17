@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'jquery-turbolinks'
+
 #------ Mail List -----------
 gem 'gibbon'
 gem 'sucker_punch'

@@ -4,6 +4,7 @@ class OrderItemsController < ApplicationController
     @order_item = @order.order_items.new(order_item_params)
     #Asign Correct Price
     @order_item.unit_price = @order_item.set_unit_price(order_item_params[:product_id], current_user)
+    @order.set_user(current_user)
     @order.save
     session[:order_id] = @order.id
 
@@ -30,6 +31,6 @@ class OrderItemsController < ApplicationController
 
   private
   def order_item_params
-    params.require(:order_item).permit(:quantity, :unit_price, :product_id)
+    params.require(:order_item).permit(:quantity, :unit_price, :product_id, :user_id)
   end
 end
