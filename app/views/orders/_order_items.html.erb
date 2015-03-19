@@ -1,0 +1,7 @@
+
+<li class="list-group-item row">
+  <div class="col-md-3"><%= order_item.product.name %></div>
+  <div class="col-md-3"><%= order_item.quantity.to_i %></div>
+  <div class="col-md-3"><%= number_to_currency order_item.unit_price %></div>
+  <div class="col-md-3"><%= number_to_currency order_item.total_price %></div>
+</li>

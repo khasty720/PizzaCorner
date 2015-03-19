@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :product_prices
   resources :categories
   resources :groups
+  resources :orders
 
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]

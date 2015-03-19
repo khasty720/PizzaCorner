@@ -1,0 +1,15 @@
+
+
+<h4 class="text-left">User Details</h4>
+    <ul class="list-group list-left">
+      <li class="list-group-item">Email: <%=@user.email %>
+      <li class="list-group-item">Company: <%=@user.company %>
+    </ul>
+
+<h4 class="text-left">Billing Address</h4>
+    <ul class="list-group list-left">
+        <li class="list-group-item">Street: <%= @user.street %></li>
+        <li class="list-group-item">City: <%= @user.city %></li>
+        <li class="list-group-item">State: <%= @user.state %></li>
+        <li class="list-group-item">Zip: <%= @user.zip %></li>
+    </ul>
