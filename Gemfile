@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+#--- Stripe ---
+gem 'high_voltage'
+gem 'stripe'
+#---------------
+
 gem 'jquery-turbolinks'
 
 #------ Mail List -----------

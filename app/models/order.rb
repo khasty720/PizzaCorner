@@ -6,6 +6,9 @@ class Order < ActiveRecord::Base
   before_create :set_order_status
   before_save :update_subtotal, :update_tax, :update_total
 
+  #virtual attr stripe token
+  attr_accessor :stripe_token
+
   def subtotal
     order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   end
@@ -17,6 +20,10 @@ class Order < ActiveRecord::Base
   def get_user
     user = User.find(self[:user_id])
     return user
+  end
+
+  def make_payment
+    MakePaymentService.new.perform(self)
   end
 
   private

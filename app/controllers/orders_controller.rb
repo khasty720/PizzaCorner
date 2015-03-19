@@ -14,8 +14,11 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find params[:id]
+
     respond_to do |format|
       if @order.update(order_params)
+        @order.make_payment
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
@@ -33,7 +36,7 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.require(:order).permit(:subtotal, :tax, :shipping, :total, :user_id)
+    params.require(:order).permit(:subtotal, :tax, :shipping, :total, :user_id, :stripe_token, :street, :city, :state, :zip, :country)
   end
 
 

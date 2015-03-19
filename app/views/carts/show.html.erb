@@ -1,5 +1,5 @@
 <div class="shopping-cart">
   <%= render "shopping_cart" %>
 
-  <%= link_to "Proceed to Checkout", @order %>
+  <%= link_to "Proceed to Checkout", @order, data: { no_turbolink: true }, :class => 'btn btn-default' %>
 </div>

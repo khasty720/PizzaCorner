@@ -1,7 +1,12 @@
 <div class="row">
 <div class="col-md-12">
+
+<% content_for :head do %>
+  <%= render 'javascript' %>
+<% end %>
+
 <div class="form">
-  <%= form_for(@order) do |f| %>
+  <%= form_for(@order, :html => { :role => 'form', :class => 'payment-form'}) do |f| %>
   <% if @order.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@order.errors.count, "error") %> prohibited this group from being saved:</h2>
@@ -36,8 +41,9 @@
     <div class="col-md-4">
     <div class="actions">
       <%= f.submit "Submit Order", :class => "btn btn-default", 'data-disable-with' => "Please wait.." %>
+      <% end %>
     </div>
     </div>
 
-  <% end %>
+
 </div>
