@@ -42,4 +42,16 @@ Rails.application.configure do
 
   #Allow Helper for states
   config.action_controller.include_all_helpers = true
+
+  #------- Gmail Config --------
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'localhost:3000',
+    user_name:            'cameochem@gmail.com',
+    password:             'Gunther13',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
 end

@@ -17,5 +17,6 @@
 <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
 <% end %>
 <h4 class="text-right">Order Subtotal: <span style="color: green"><%= number_to_currency @order.subtotal %></span></h4>
+<%= link_to "Proceed to Checkout", @order, data: { no_turbolink: true }, :class => 'btn btn-default' %>
 
 <% end %>

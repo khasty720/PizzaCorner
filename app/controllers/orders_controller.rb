@@ -6,7 +6,8 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = current_order
+    #@order = current_order
+    @order = Order.find params[:id]
     @user = @order.get_user
   end
 
@@ -15,11 +16,21 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find params[:id]
+    @order.incriment_order_status
 
     respond_to do |format|
       if @order.update(order_params)
+
+        #---- Process Payment ----
         @order.make_payment
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+
+        # Tell the UserMailer to send a welcome email after save
+        OrderMailer.order_confirmation(@order).deliver_now
+
+        #--- Clear Session ---
+        session[:order_id] = nil
+
+        format.html { redirect_to root_path, notice: 'Order was submitted successfully.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -28,11 +39,27 @@ class OrdersController < ApplicationController
     end
   end
 
+  # DELETE /categories/1
+  # DELETE /categories/1.json
+  def destroy
+    @order = Order.find params[:id]
+    if (@admin == current_user || @order.get_user == current_user)
+      @order.destroy
+      session[:order_id] = nil
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Order was canceled successfully.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path, :alert => "Access denied."
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_order
-    @order = Order.find(params[:id])
-  end
+  #def set_order
+  #  @order = Order.find(params[:id])
+  #end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params

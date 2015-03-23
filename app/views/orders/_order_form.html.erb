@@ -43,7 +43,11 @@
       <%= f.submit "Submit Order", :class => "btn btn-default", 'data-disable-with' => "Please wait.." %>
       <% end %>
     </div>
-    </div>
+  </div>
+  <div class="col-md-4">
+    <%= link_to 'Cancel Order', @order, method: :delete, data: { confirm: 'Are you sure?' },
+    :class => "btn btn-default"  %>
+  </div>
 
 
 </div>
