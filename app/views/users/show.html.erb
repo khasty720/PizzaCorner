@@ -1,3 +1,19 @@
 <h3>Account Information</h3>
-<p>Email: <%= @user.email if @user.email %></p>
-<p>Company: <%= @user.company if @user.company %></p>
+
+<div class="checkout">
+
+<ul class="list-group">
+  <li class="list-group-item row">
+    Email: <%= @user.email if @user.email %>
+  </li>
+  <li class="list-group-item row">
+      Name: <%= @user.first_name%> <%= @user.last_name%>
+  </li>
+  <li class="list-group-item row">
+      Address: <%=@user.street%> <%=@user.city%> <%=@user.state%>
+  </li>
+  <li class="list-group-item row">
+      <%=@user.zip%> <%=@user.country%>
+  </li>
+</ul>
+</div>

@@ -2,6 +2,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// Core variables and mixins
+//@import "bootstrap/variables";
+// Components
+//@import "bootstrap/navs";
+//$navbar-default-bg:red; // variable initializing
+//@import "bootstrap/navbar";
+
 
 // ----- Typography ------
 
@@ -14,6 +21,9 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+}.navbar-default {
+    background-color: #0f006f;
+    border-color: #030033;
 }
 
 h2 {
@@ -40,16 +50,21 @@ img {
   }
 //------------------------
 
-
+.centered { margin: auto; }
 
 // override for the 'Home' navigation link
 .navbar-brand {
   font-size: inherit;
   }
+/*.navbar{
+  background-color: #003300;
+  border-color: white;
+}*/
 
 nav {
     padding-top: .05%;
     //max-width: 900px
+
     margin-left:auto;
     margin-right:auto;
     max-width :85%;

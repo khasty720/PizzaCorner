@@ -1,25 +1,14 @@
 
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
+<h3 class="text-center"><%= @group.name %></h3>
 
-<p>
-  <strong>Description:</strong>
-  <%= @group.description %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @group.category.name %>
-</p>
 <p>
   <% if @group.image_file_name.present? %>
   <%= image_tag @group.image.url, :size => :med %>
   <% end %>
 </p>
 
-<h3 class="text-center">Products for Sale</h3>
+<h4 class="text-center"><%= @group.description %></h4>
+
 <%#= render @group.products %>
   <div class="row">
     <div class="col-xs-6 col-xs-offset-3">
@@ -29,6 +18,6 @@
     </div>
   </div>
 
-<%= link_to 'Edit', edit_group_path(@group) %>
-<%= link_to 'Back', groups_path %>
-<%= link_to 'Add Product', new_product_path %>
+<%#= link_to 'Edit', edit_group_path(@group) %>
+<%#= link_to 'Back', groups_path %>
+<%#= link_to 'Add Product', new_product_path %>

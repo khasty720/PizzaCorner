@@ -1,11 +1,17 @@
 <td><%= group.name %></td>
 <td><%= group.description %></td>
-<td><%= group.category.name %></td>
+<td><%#= group.category.name %></td>
 <td>
   <% if group.image_file_name.present? %>
-  <%= image_tag group.image.url, :size => :med %>
+  <%#= image_tag group.image.url, :size => :med %>
+  <%=link_to image_tag(group.image.url, :size => :med), group %>
   <% end %>
 </td>
+
+<%#=link_to image_tag(group.image.url, :size => :med), group %>
+<%#= link_to , group, :class => "btn btn-default"  %>
+<!--
 <td><%= link_to 'Show', group, :class => "btn btn-default"  %></td>
 <td><%= link_to 'Edit', edit_group_path(group), :class => "btn btn-default"  %></td>
 <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-default"  %></td>
+-->

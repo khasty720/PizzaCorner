@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'cameochem@gmail.com'
+  default from: 'PizzaCorner@gmail.com'
   layout 'mailer'
 
   #---- Get Admin User -----

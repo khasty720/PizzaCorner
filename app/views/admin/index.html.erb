@@ -1,26 +1,29 @@
 
 <div class="container">
   <fieldset>
-  <h1 class="page-header text-center">Application Manager</h1>
+  <h1 class="page-header text-center">Configuration Manager</h1>
   <div class="row">
     <div class="col-sm-6">
-      <%= link_to 'Manage Users', users_path, :class => "btn btn-lg btn-block btn btn-info" %>
+      <%= link_to 'Manage Users', users_path, :class => "btn btn-lg btn-block btn btn-default" %>
         </div>
         <div class="col-sm-6">
-          <%= link_to 'Manage Categories', categories_path, :class => "btn btn-lg btn-block btn-info" %>
+          <%= link_to 'Manage Categories', categories_path, :class => "btn btn-lg btn-block btn-default" %>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <%= link_to 'Manage Products', products_path, :class => "btn btn-lg btn-block btn-info" %>
+            <%= link_to 'Manage Products', products_path, :class => "btn btn-lg btn-block btn-default" %>
           </div>
           <div class="col-sm-6">
-            <%= link_to 'Manage Groups', groups_path, :class => "btn btn-lg btn-block btn-info" %>
+            <%= link_to 'Manage Groups', groups_path, :class => "btn btn-lg btn-block btn-default" %>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <%= link_to 'Manage Product Prices', product_prices_path, :class => "btn btn-lg btn-block btn-info" %>
+            <%= link_to 'Manage Product Prices', product_prices_path, :class => "btn btn-lg btn-block btn-default" %>
+          </div>
+          <div class="col-sm-6">
+            <%= link_to 'Manage Orders', root_path, :class => "btn btn-lg btn-block btn-default" %>
           </div>
         </div>
   </fieldset>

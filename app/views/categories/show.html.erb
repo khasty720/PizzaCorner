@@ -1,17 +1,22 @@
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<div class="checkout">
 
+<h2 class="text-center"><%= @category.name %></h2>
+
+
+<!--
 <p>
   <strong>Description:</strong>
   <%= @category.description %>
 </p>
+-->
 
 <%#= render @category.groups %>
 <%= render 'group_table' %>
 
+<!--
 <p>
 <%= link_to 'Groups', groups_path %>
 <%= link_to 'Back', categories_path %>
 </p>
+-->
+</div>
