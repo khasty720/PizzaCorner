@@ -22,7 +22,11 @@
   </div>
   <div class="field">
     <%= f.label :default_price %><br>
-    <%= f.number_field :default_price, :value => 0.00, :step => 'any' %>
+    <%= f.number_field :default_price, :step => 'any' %>
+  </div>
+  <div class="field">
+    <%= f.label :count %><br>
+    <%= f.number_field :count, :step => 'any' %>
   </div>
   <div class="form-group">
     <%= f.label :group_id %>

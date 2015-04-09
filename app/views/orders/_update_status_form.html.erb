@@ -1,0 +1,28 @@
+<div class="form">
+  <%= form_for(order_status_update_path(@order)) do |f| %>
+  <% if @order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+    <ul>
+      <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <fieldset>
+  <div class="form-group">
+    <%= f.label :order_status_id, "Current Status" %>
+    <%= f.collection_select :order_status_id, OrderStatus.order('name ASC').all, :id, :name, class: 'form-control' %>
+  </div>
+  </li>
+  <div class="actions">
+    <%= f.submit 'Update Status',method: :update_status, :class => "btn btn-default", 'data-disable-with' => "Please wait.." %>
+  </div>
+  <% end %>
+</fieldset>
+
+
+</div>

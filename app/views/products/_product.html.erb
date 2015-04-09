@@ -20,15 +20,20 @@
         <% if user_signed_in? %>
         <%= number_to_currency(product.get_price(product,current_user))%>
         <% else %>
-        Please **Contact Us** for Price
+
+        <h4 class="text-right">Please **Contact Us** for Price<span>
         <% end %>
       </span></h4>
       <div class="input-group">
+        <% if product.count > 0 %>
         <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
         <div class="input-group-btn">
           <%= f.hidden_field :product_id, value: product.id %>
           <%= f.submit "Add to Cart", class: "btn btn-primary" %>
         </div>
+        <% else %>
+        <h4 class="text-right">Item is Currently Out of Stock<span>
+        <% end %>
       </div>
       <% end %>
     </div>

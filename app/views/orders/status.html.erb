@@ -1,0 +1,39 @@
+<div class="checkout">
+  <h2 class="text-center">Order Status</h2>
+
+  <!-- Row One -->
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-xs-6 col-sm-4">
+      <%= render 'user_detail'%>
+
+      <h4 class="text-left">Shipping Address</h4>
+      <ul class="list-group list-left">
+        <li class="list-group-item">Street: <%= @order.street %></li>
+        <li class="list-group-item">City: <%= @order.city %></li>
+        <li class="list-group-item">State: <%= @order.state %></li>
+        <li class="list-group-item">Zip: <%= @order.zip %></li>
+      </ul>
+
+      <h4 class="text-left">Order Status</h4>
+      <ul class="list-group list-left">
+        <li class="list-group-item">Current Status: <%= @order.order_status.name %></li>
+      </ul>
+
+    </div>
+
+
+    <div class="col-xs-6 col-sm-4">
+      <%= render 'total_due'%>
+    </div>
+
+  </div>
+
+  <br>
+
+  <!-- Row Two -->
+  <%#= render 'order_form' %>
+
+  <!-- Row Three -->
+  <br>
+</div>

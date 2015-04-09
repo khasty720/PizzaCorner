@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
 
-  get 'order_items/create'
-
-  get 'order_items/update'
-
-  get 'order_items/destroy'
-
-  get 'carts/show'
-
   root 'welcome#index'
+
   get 'welcome/index'
   get 'admin/index'
-  
+  get 'order_items/create'
+  get 'order_items/update'
+  get 'order_items/destroy'
+  get 'carts/show'
+
 
   devise_for :users
   resources :users
@@ -19,10 +16,17 @@ Rails.application.routes.draw do
   resources :product_prices
   resources :categories
   resources :groups
+
   resources :orders
+  #Custom Order Methods
+  get '/orders/status/:id', to: 'orders#status', as: 'show_order_status'
+  #get '/orders/:id', to: 'orders#status_update', as: 'order_status_update'
+  post '/orders/:id/edit', to: 'orders#update_status', as: 'order_status_update'
 
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
