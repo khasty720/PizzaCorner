@@ -1,0 +1,57 @@
+<div class="form">
+  <%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <p>Employee</p>
+    <%= f.radio_button(:employee, false) %>
+    <%= f.label:employee, "No" %>
+    <%= f.radio_button(:employee, true) %>
+    <%= f.label :employee, "Yes" %>
+  </div>
+  <p>Address</p>
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :street %>
+      <%= f.text_field :street, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :city %>
+      <%= f.text_field :city, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :state %>
+      <%=f.select :state, options_for_select(us_states), class: 'form-control'%>
+    </div>
+    <div class="form-group">
+      <%= f.label :zip %>
+      <%= f.text_field :zip, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :country %>
+      <%= f.text_field :country,:value => 'United States', class: 'form-control' %>
+    </div>
+  </fieldset>
+  <div class="actions">
+    <%= f.submit :class => "btn btn-default", 'data-disable-with' => "Please wait.." %>
+  </div>
+  <% end %>
+</div>

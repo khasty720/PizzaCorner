@@ -16,8 +16,10 @@
       <td><%= order.id %></td>
       <td><%= order.total %></td>
       <td><%= link_to 'Show', show_order_status_path(order), :class => "btn btn-default"  %></td>
+      <% if is_admin %>
       <td><%= link_to 'Edit', edit_order_path(order), :class => "btn btn-default"  %></td>
       <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-default"  %></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

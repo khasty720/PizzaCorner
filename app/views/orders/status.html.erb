@@ -7,13 +7,26 @@
     <div class="col-xs-6 col-sm-4">
       <%= render 'user_detail'%>
 
-      <h4 class="text-left">Shipping Address</h4>
+      <h4 class="text-left">Order Type</h4>
+      <ul class="list-group list-left">
+        <li class="list-group-item">
+          <% if @order.delivery %>
+          Delivery
+          <% else %>
+          Pickup
+          <% end %>
+        </li>
+      </ul>
+
+      <% if @order.delivery %>
+      <h4 class="text-left">Delivery Address</h4>
       <ul class="list-group list-left">
         <li class="list-group-item">Street: <%= @order.street %></li>
         <li class="list-group-item">City: <%= @order.city %></li>
         <li class="list-group-item">State: <%= @order.state %></li>
         <li class="list-group-item">Zip: <%= @order.zip %></li>
       </ul>
+      <% end %>
 
       <h4 class="text-left">Order Status</h4>
       <ul class="list-group list-left">

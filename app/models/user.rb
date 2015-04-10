@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   validates :first_name, :last_name, :street, :city, :state, :zip, :country, :presence => true
 
-  has_many :product_prices
+  has_many :product_prices, :dependent => :destroy
   has_many :products , through: :product_prices
   has_many :orders
 

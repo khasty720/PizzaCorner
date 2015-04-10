@@ -20,7 +20,15 @@
   <% end %>
 
 <div class="col-md-5">
-      <fieldset>
+    <fieldset>
+      <h4 class="text-left">Pickup / Delivery</h4>
+      <div class="form-group">
+        <p>Employee</p>
+        <%= f.radio_button(:delivery, false) %>
+        <%= f.label :delivery, "No" %>
+        <%= f.radio_button(:delivery, true) %>
+        <%= f.label :delivery, "Yes" %>
+      </div>
     <h4 class="text-left">Delivery Address</h4>
     <%= render 'ship_addr_form', :f => f %>
   </fieldset>
