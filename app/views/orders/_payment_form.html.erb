@@ -1,12 +1,12 @@
 <h4 class="text-left">Payment Information</h4>
 
 <div class="form-group">
-  <%= label :card_number, "Credit Card Number" %>
-  <%= text_field :card_number, class: 'form-control' %>
+  <%= f.label :card_number %>
+  <%= f.text_field :card_number, class: 'form-control' %>
 </div>
 <div class="form-group">
-  <%= label :card_code, "Card Security Code" %>
-  <%= text_field :card_code, class: 'form-control'%>
+  <%= f.label :card_code %>
+  <%= f.text_field :card_code, class: 'form-control' %>
 </div>
 <div class="form-group">
   <%= f.label :card_month %>

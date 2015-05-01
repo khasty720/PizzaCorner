@@ -8,9 +8,28 @@
   <p>
     <%= @user.first_name%> <%= @user.last_name%> has placed an Order.
   </p>
-  <p>Order Type:
+  <p><b>Customer Phone#:</b> <%=@user.phone%></p<
+
+  <p><h4>Order Type:</h4>
     <% if @order.delivery == true %>
       Delivery
+    </br>
+    <h5>Delivery Address</h5>
+    <table>
+      <tr>
+        <td><b>Street: </b></td>
+        <td><%=@order.street%></td>
+      </tr>
+      <tr>
+        <td><b>City: </b></td>
+        <td><%=@order.city%></td>
+      </tr>
+      <tr>
+        <td><b>Zipcode: </b></td>
+        <td><%=@order.zip%></td>
+      </tr>
+    </table>
+
     <% else %>
       Pick Up
     <% end %>
@@ -18,8 +37,8 @@
   <h4>Order Details</h4>
   <table>
     <tr>
-      <td>Product Name</td>
-      <td>Quantity</td>
+      <td><b>Product Name</b></td>
+      <td><b>Quantity</b></td>
     </tr>
     <% @order.order_items.each do |order_item| %>
     <tr>
@@ -30,17 +49,17 @@
 
     <tr>
       <td>
-      <td>Subtotal:</td>
+      <td><b>Subtotal: </b></td>
       <td><%= number_to_currency @order.subtotal %></td>
     </tr>
     <tr>
       <td>
-      <td>Tax: </td>
+      <td><b>Tax: </b></td>
       <td> <%= number_to_currency @order.tax %></td>
     </tr>
     <tr>
       <td></td>
-      <td>Total Due: </td>
+      <td><b>Total Due: </b></td>
       <td><%= number_to_currency @order.total %></td>
     </tr>
   </table>
