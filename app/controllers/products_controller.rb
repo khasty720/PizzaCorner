@@ -6,6 +6,10 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    unless @admin == current_user
+      redirect_to root_path, :alert => "Access denied."
+    end
+    
     @products = Product.all
     @order_item = current_order.order_items.new
   end
@@ -14,7 +18,6 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     user = current_user
-    @product_price = ProductPrice.where(product_id: @product.id,  user_id: user.id)
   end
 
   # GET /products/new

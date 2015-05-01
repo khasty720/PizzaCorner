@@ -10,4 +10,16 @@ module ApplicationHelper
   end
   #----------------------------------
 
+  #--- Check if user is the Admin ---
+  def is_employee
+    if current_user.employee == true
+      return true
+    else
+      return false
+    end
+  end
+  #----------------------------------
+
+
+
 end

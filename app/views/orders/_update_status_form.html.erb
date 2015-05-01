@@ -1,5 +1,5 @@
 <div class="form">
-  <%= form_for(order_status_update_path(@order)) do |f| %>
+  <%= form_for [ :update_status, @order ] do |f| %>
   <% if @order.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -19,7 +19,7 @@
   </div>
   </li>
   <div class="actions">
-    <%= f.submit 'Update Status',method: :update_status, :class => "btn btn-default", 'data-disable-with' => "Please wait.." %>
+    <%= f.submit 'Update Status', :class => "btn btn-default", 'data-disable-with' => "Please wait.." %>
   </div>
   <% end %>
 </fieldset>

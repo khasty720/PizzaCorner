@@ -13,16 +13,16 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :products
-  resources :product_prices
   resources :categories
   resources :groups
 
-  resources :orders
+  resources :orders do
+    patch :update_status, on: :member
+  end
+
   #Custom Order Methods
   get '/orders/status/:id', to: 'orders#status', as: 'show_order_status'
-  #get '/orders/:id', to: 'orders#status_update', as: 'order_status_update'
-  post '/orders/:id/edit', to: 'orders#update_status', as: 'order_status_update'
-
+  
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409141425) do
+ActiveRecord::Schema.define(version: 20150501001735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,21 +81,13 @@ ActiveRecord::Schema.define(version: 20150409141425) do
     t.string   "zip"
     t.string   "country"
     t.boolean  "delivery",                                 default: false
+    t.string   "card_code"
+    t.string   "card_month"
+    t.string   "card_year"
   end
 
   add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
-
-  create_table "product_prices", force: :cascade do |t|
-    t.decimal  "price",      precision: 8, scale: 2
-    t.integer  "user_id"
-    t.integer  "product_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-  end
-
-  add_index "product_prices", ["product_id"], name: "index_product_prices_on_product_id", using: :btree
-  add_index "product_prices", ["user_id"], name: "index_product_prices_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -135,6 +127,7 @@ ActiveRecord::Schema.define(version: 20150409141425) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "employee",               default: false
+    t.integer  "phone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -147,6 +140,4 @@ ActiveRecord::Schema.define(version: 20150409141425) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "order_statuses"
   add_foreign_key "orders", "users"
-  add_foreign_key "product_prices", "products"
-  add_foreign_key "product_prices", "users"
 end

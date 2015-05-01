@@ -5,6 +5,10 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    unless @admin == current_user
+      redirect_to root_path, :alert => "Access denied."
+    end
+    
     @categories = Category.all
   end
 
@@ -47,6 +51,8 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    #raise params.inspect
+
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }

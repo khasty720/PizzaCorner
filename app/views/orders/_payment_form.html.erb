@@ -1,24 +1,18 @@
 <h4 class="text-left">Payment Information</h4>
 
-<div id='stripe_error' class='alert alert-danger' style='display:none' ></div>
-
-<% if @order.stripe_token %>
-<p>Credit card acceptance is pending.</p>
-<% else %>
 <div class="form-group">
-  <%= label_tag :card_number, "Credit Card Number" %>
-  <%= text_field_tag :card_number, nil, name: nil, class: 'form-control', data: { stripe: 'number' } %>
+  <%= label :card_number, "Credit Card Number" %>
+  <%= text_field :card_number, nil, name: nil, class: 'form-control' %>
 </div>
 <div class="form-group">
-  <%= label_tag :card_code, "Card Security Code" %>
-  <%= text_field_tag :card_code, nil, name: nil, class: 'form-control', data: { stripe: 'cvc' } %>
+  <%= label :card_code, "Card Security Code" %>
+  <%= text_field :card_code, nil, name: nil, class: 'form-control'%>
 </div>
-<br />
 <div class="form-group">
-  <%= label_tag :card_month, "Card Experation" %>
-  <%= select_month nil, { use_two_digit_numbers: true}, { name: nil, data: {stripe: 'exp-month' } } %>
-  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, { name: nil, data: {stripe: 'exp-year' } } %>
+  <%= f.label :card_month %>
+  <%=f.select :card_month, options_for_select(card_months), class: 'form-control'%>
 </div>
-<% end %>
-<br />
-<%= f.hidden_field :stripe_token %>
+<div class="form-group">
+  <%= f.label :card_year %>
+  <%=f.select :card_year, options_for_select(card_years), class: 'form-control'%>
+</div>

@@ -1,10 +1,6 @@
 <div class="row">
 <div class="col-md-12">
 
-<% content_for :head do %>
-  <%= render 'javascript' %>
-<% end %>
-
 <div class="form">
   <%= form_for(@order, :html => { :role => 'form', :class => 'payment-form'}) do |f| %>
   <% if @order.errors.any? %>
@@ -23,14 +19,13 @@
     <fieldset>
       <h4 class="text-left">Pickup / Delivery</h4>
       <div class="form-group">
-        <p>Employee</p>
         <%= f.radio_button(:delivery, false) %>
-        <%= f.label :delivery, "No" %>
+        <%= f.label :delivery, "Pickup" %>
         <%= f.radio_button(:delivery, true) %>
-        <%= f.label :delivery, "Yes" %>
+        <%= f.label :delivery, "Delivery" %>
       </div>
     <h4 class="text-left">Delivery Address</h4>
-    <%= render 'ship_addr_form', :f => f %>
+    <%= render 'addr_form', :f => f %>
   </fieldset>
 </div>
 

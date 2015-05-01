@@ -1,18 +1,13 @@
 class Order < ActiveRecord::Base
   belongs_to :order_status
-  #belongs_to :user
-
 
   has_many :order_items, :dependent => :delete_all
   before_create :set_order_status
   before_save :update_subtotal, :update_tax, :update_total
-  #before_update :incriment_order_status
 
-  #virtual attr stripe token
-  attr_accessor :stripe_token
 
   def self.get_orders(admin,user)
-    if admin == user
+    if (admin == user || user.employee == true)
       return Order.all
     else
       return Order.where("user_id = ?", user.id)
@@ -49,9 +44,6 @@ class Order < ActiveRecord::Base
     return user
   end
 
-  def make_payment
-    MakePaymentService.new.perform(self)
-  end
 
   def incriment_order_status
     status = self.order_status_id
@@ -69,7 +61,7 @@ class Order < ActiveRecord::Base
   end
 
   def update_tax
-    self[:tax] = self[:subtotal] * 0.08875
+    self[:tax] = self[:subtotal] * 0.06
   end
 
   def update_total

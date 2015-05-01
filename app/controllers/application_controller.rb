@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
     end
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) << :last_name << :first_name << :company << :street << :city <<:state << :zip << :country
-      devise_parameter_sanitizer.for(:account_update) << :last_name << :first_name << :company << :street << :city <<:state << :zip << :country
+      devise_parameter_sanitizer.for(:sign_up) << :last_name << :first_name << :street << :city <<:state << :zip << :country << :phone
+      devise_parameter_sanitizer.for(:account_update) << :last_name << :first_name << :street << :city <<:state << :zip << :country << :phone
     end
 
     def current_order

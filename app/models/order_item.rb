@@ -20,16 +20,6 @@ class OrderItem < ActiveRecord::Base
     unit_price * quantity
   end
 
-
-  def set_unit_price (product_id, user)
-    product = Product.find(product_id)
-    unit_price = product.get_price(product, user)
-
-    return unit_price
-  end
-
-
-
   private
   def product_present
     if product.nil?
@@ -44,8 +34,7 @@ class OrderItem < ActiveRecord::Base
   end
 
   def finalize
-    #Removed to allow for the User Price to be used 
-    #self[:unit_price] = unit_price
+    self[:unit_price] = unit_price
     self[:total_price] = quantity * self[:unit_price]
   end
 end

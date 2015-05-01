@@ -5,6 +5,10 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
+    unless @admin == current_user
+      redirect_to root_path, :alert => "Access denied."
+    end
+    
     @groups = Group.all
   end
 

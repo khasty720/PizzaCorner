@@ -13,6 +13,10 @@ class OrdersController < ApplicationController
   end
 
   def status
+    unless (@admin == current_user || current_user.employee == true)
+      redirect_to root_path, :alert => "Access denied."
+    end
+
     @order = Order.find params[:id]
     @user = @order.get_user
   end
@@ -23,16 +27,12 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find params[:id]
-    @order.incriment_order_status
 
     respond_to do |format|
       if @order.update(order_params)
 
         #----- Update Invetory Count ----
         @order.update_product_invetory(@order)
-
-        #---- Process Payment ----
-        @order.make_payment
 
         # Tell the UserMailer to send a welcome email after save
         OrderMailer.order_confirmation(@order).deliver_now
@@ -51,9 +51,7 @@ class OrdersController < ApplicationController
   end
 
   def update_status
-    #@order.update_order(params[:stripe_token], params[:street], params[:city], params[:state], params[:zip], params[:country])
-    #@user = @order.get_user
-
+    #raise params.inspect
 
     respond_to do |format|
       #if @order.update_order(params[:order_status_id])
@@ -71,6 +69,10 @@ class OrdersController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
+    unless (@admin == current_user || current_user.employee == true)
+      redirect_to root_path, :alert => "Access denied."
+    end
+
     @order = Order.find params[:id]
     if (@admin == current_user || @order.get_user == current_user)
       @order.destroy
@@ -92,7 +94,7 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.require(:order).permit(:subtotal, :tax, :shipping, :total, :user_id, :stripe_token, :street, :city, :state, :zip, :country, :order_status_id, :delivery)
+    params.require(:order).permit(:subtotal, :tax, :shipping, :total, :user_id, :street, :city, :state, :zip, :country, :order_status_id, :delivery, :card_code, :card_year, :card_month)
   end
 
 

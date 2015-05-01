@@ -10,5 +10,7 @@
 OrderStatus.delete_all
 OrderStatus.create! id: 1, name: "In Progress"
 OrderStatus.create! id: 2, name: "Placed"
-OrderStatus.create! id: 3, name: "Shipped"
-OrderStatus.create! id: 4, name: "Cancelled"
+OrderStatus.create! id: 3, name: "Ready for Pick Up"
+OrderStatus.create! id: 4, name: "Out for Delivery"
+OrderStatus.create! id: 5, name: "Complete"
+OrderStatus.create! id: 6, name: "Cancelled"
