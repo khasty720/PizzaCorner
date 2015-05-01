@@ -4,12 +4,66 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-  <h1>Cameo Chemicals Order#:<%= @order.id %></h1>
+  <h1>Pizza Corner Order#:<%= @order.id %></h1>
   <p>
-    <%= @user.company%> has placed an Order.
+    <%= @user.first_name%> <%= @user.last_name%> has placed an Order.
   </p>
-  <p>
-    Total: <%= @order.total %>.<br>
+  <p>Order Type:
+    <% if @order.delivery == true %>
+      Delivery
+    <% else %>
+      Pick Up
+    <% end %>
   </p>
+  <h4>Order Details</h4>
+  <table>
+    <tr>
+      <td>Product Name</td>
+      <td>Quantity</td>
+    </tr>
+    <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td><%= order_item.product.name %></td>
+      <td><%= order_item.quantity.to_i %></td>
+    </tr>
+    <% end %>
+
+    <tr>
+      <td>
+      <td>Subtotal:</td>
+      <td><%= number_to_currency @order.subtotal %></td>
+    </tr>
+    <tr>
+      <td>
+      <td>Tax: </td>
+      <td> <%= number_to_currency @order.tax %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Total Due: </td>
+      <td><%= number_to_currency @order.total %></td>
+    </tr>
+  </table>
+
+  <h4>Payment Info</h4>
+  <table>
+    <tr>
+      <td>Card Number: </td>
+      <td><%= @order.card_number %>
+    </tr>
+    <tr>
+      <td>Card Security Code: </td>
+      <td><%= @order.card_code %>
+    </tr>
+    <tr>
+      <td>Card Month: </td>
+      <td><%= @order.card_month %>
+    </tr>
+    <tr>
+      <td>Card Year: </td>
+      <td><%= @order.card_year %>
+    </tr>
+  </table>
+
 </body>
 </html>

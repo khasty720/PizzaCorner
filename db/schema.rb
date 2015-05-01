@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501001735) do
+ActiveRecord::Schema.define(version: 20150501035350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20150501001735) do
     t.string   "card_code"
     t.string   "card_month"
     t.string   "card_year"
+    t.string   "card_number"
   end
 
   add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
@@ -127,11 +128,13 @@ ActiveRecord::Schema.define(version: 20150501001735) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "employee",               default: false
-    t.integer  "phone"
+    t.string   "phone"
+    t.integer  "state_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree
 
   add_foreign_key "groups", "categories"
   add_foreign_key "groups_products", "groups"
