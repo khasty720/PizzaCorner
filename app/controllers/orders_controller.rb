@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def status
-    unless (@admin == current_user || current_user.employee == true)
+    unless (@admin == current_user || current_user.employee == true || @order.user_id = current_user.id)
       redirect_to root_path, :alert => "Access denied."
     end
 
