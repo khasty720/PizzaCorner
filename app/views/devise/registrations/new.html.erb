@@ -29,10 +29,6 @@
         <%= f.text_field :city, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.label :state_id %>
-        <%= f.collection_select :state_id, State.order('name ASC').all, :id, :name, class: 'form-control' %>
-      </div>
-      <div class="form-group">
         <%= f.label :zip %>
         <%= f.text_field :zip, class: 'form-control' %>
       </div>
