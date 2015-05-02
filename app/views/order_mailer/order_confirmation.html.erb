@@ -6,8 +6,67 @@
 <body>
   <h1>Pizza Corner Order#:<%= @order.id %></h1>
   <p>
-    Total: <%= @order.total %>.<br>
+    Thank you <%= @user.first_name%>, your order has been recieved.
   </p>
-  <p>Thanks for choosing the Pizza Corner</p>
-</body>
+
+  <h2>Order Details</h2>
+  <p><b>Customer Phone#:</b> <%=@user.phone%></p>
+
+    <p><h4>Order Type:</h4>
+      <% if @order.delivery == true %>
+      Delivery
+    </br>
+    <h5>Delivery Address</h5>
+    <table>
+      <tr>
+        <td><b>Street: </b></td>
+        <td><%=@order.street%></td>
+      </tr>
+      <tr>
+        <td><b>City: </b></td>
+        <td><%=@order.city%></td>
+      </tr>
+      <tr>
+        <td><b>Zipcode: </b></td>
+        <td><%=@order.zip%></td>
+      </tr>
+    </table>
+
+    <% else %>
+    Pick Up
+    <% end %>
+  </p>
+  <h4>Order Details</h4>
+  <table>
+    <tr>
+      <td><b>Product Name</b></td>
+      <td><b>Quantity</b></td>
+    </tr>
+    <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td><%= order_item.product.name %></td>
+      <td><%= order_item.quantity.to_i %></td>
+    </tr>
+    <% end %>
+
+    <tr>
+      <td>
+        <td><b>Subtotal: </b></td>
+        <td><%= number_to_currency @order.subtotal %></td>
+      </tr>
+      <tr>
+        <td>
+          <td><b>Tax: </b></td>
+          <td> <%= number_to_currency @order.tax %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><b>Total Due: </b></td>
+          <td><%= number_to_currency @order.total %></td>
+        </tr>
+      </table>
+
+      <p><b>Current Order Status:</b> <%=@order.order_status.name%></p>
+
+    </body>
 </html>

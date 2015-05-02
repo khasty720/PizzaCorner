@@ -14,3 +14,12 @@ OrderStatus.create! id: 3, name: "Ready for Pick Up"
 OrderStatus.create! id: 4, name: "Out for Delivery"
 OrderStatus.create! id: 5, name: "Complete"
 OrderStatus.create! id: 6, name: "Cancelled"
+
+#----- States ------
+State.create(name: 'Maryland', abbv: 'MD')
+State.create(name: 'Washington DC', abbv: 'DC')
+
+#----- Category ------
+Category.create(name: 'Pizza')
+Category.create(name: 'Beverage')
+Category.create(name: 'Sides')
