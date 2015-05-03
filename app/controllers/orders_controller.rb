@@ -69,10 +69,7 @@ class OrdersController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    unless (@admin == current_user || current_user.employee == true)
-      redirect_to root_path, :alert => "Access denied."
-    end
-
+  
     @order = Order.find params[:id]
     if (@admin == current_user || @order.get_user == current_user)
       @order.destroy

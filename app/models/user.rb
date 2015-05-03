@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
   belongs_to :state
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable
 end

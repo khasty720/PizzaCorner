@@ -1,8 +1,13 @@
 class Order < ActiveRecord::Base
+  #validates :card_number, presence: true, length: { is: 16 }
+  #validates :card_code, presence: true, length: { is: 3 }
+  #validates :card_number, length: { is: 16 }
+  #validates :card_code, length: { is: 3 }
+
   belongs_to :order_status
 
   has_many :order_items, :dependent => :delete_all
-  before_create :set_order_status
+  before_create :set_order_status, :set_defaul_values
   before_save :update_subtotal, :update_tax, :update_total
 
 
@@ -54,6 +59,11 @@ class Order < ActiveRecord::Base
   private
   def set_order_status
     self.order_status_id = 1
+  end
+
+  def set_defaul_values
+    self.card_number = "0000000000000000"
+    self.card_code = "000"
   end
 
   def update_subtotal
